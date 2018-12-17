@@ -43,26 +43,23 @@ int Full(int **inputArray)
 	int n, temp;
 	if (row == 9)
 	{
-	
 		return (inputArray);
 	}
-  	
 	for (n = 1; n <= 9; n++)
-      if (safe(inputArray,row, col, n))
-	  {
-		temp = inputArray[row][col];
-		inputArray[row][col] = n;
-		if (col == 8)
-	  		parnianSolve(inputArray,row + 1, 0);
+    	if (safe(inputArray,row, col, n))
+		{
+			temp = inputArray[row][col];
+			inputArray[row][col] = n;
+			if (col == 8)
+	  			parnianSolve(inputArray,row + 1, 0);
 		else
 	 		parnianSolve(inputArray,row, col + 1);
 	 	if(Full(inputArray)==1)
 	 	{
 	 		return(inputArray);
-		 }
-	 	
+		}
 		inputArray[row][col] = temp;
-      }
+    	}
 }
 
 

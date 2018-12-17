@@ -17,19 +17,26 @@ int** get_input_from_file(const char *filename)
 {
 	int i,j;
 	int r=9,c=9;
-	char ch, file_name[25];
+	char file_name[25];
+	int ch;
 	FILE *fp;
-	fp = fopen(file_name, "r");
+	fp = fopen(filename, "r");
 	int **arr = (int **)malloc(r * sizeof(int *)); 
 	for (i=0; i<r; i++) 
         arr[i] = (int *)malloc(c * sizeof(int));
-    while((ch = fgetc(fp)) != EOF)
-    {
-		for (i = 0; i <  r; i++) 
-    		for (j = 0; j < c; j++)
-    			arr[i][j]='ch'-48;	
-	}
+
+	i = 0;j = 0;
+	do{
+		fscanf(fp ,"%d " ,&ch);
+		arr[i][j] = ch;
+		j++;
+		if (j == 9)
+			i++;
+		j %= 9;
+		i %= 9;
+		
+	}while(!feof(fp));
 	
     fclose(fp);
     return (arr);
-}*/
+}
